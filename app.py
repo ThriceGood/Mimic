@@ -29,8 +29,8 @@ def insert_endpoint():
 	# [POST]
 	# only returning data to call from AJAX
 	if request.method == 'POST':
-		post_data = request.data
-		reponse = endpoint.insert_endpoint(post_data, db)
+		post_data = json.loads(request.data)
+		response = endpoint.insert_endpoint(post_data, db)
 		# api level can handle representation
 		return json.dumps(response)
 	# [GET]
@@ -47,7 +47,7 @@ def update_endpoint(id=None):
 	# only returning data to call from AJAX
 	error = 'wrong verb'
 	if request.method == 'PUT':
-		post_data = request.data
+		post_data = json.loads(request.data)
 		reponse = endpoint.update_endpoint(post_data, db)
 		# api level can handle representation
 		return json.dumps(response)

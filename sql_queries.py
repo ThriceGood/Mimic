@@ -14,7 +14,7 @@ select_one = 'SELECT * FROM endpoints WHERE id=?'
 
 select_query = 'SELECT * FROM endpoints WHERE endpoint=?, tag=?, schema=?'
 
-insert = 'INSERT INTO endpoints VALUES (?,?,?,?,?,?)'
+insert = 'INSERT INTO endpoints (verb,service,endpoint,tag,schema,payload) VALUES (?,?,?,?,?,?)'
 
 update = \
 'UPDATE endpoints SET ' \

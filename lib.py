@@ -32,7 +32,7 @@ class Mimic:
 
 class Endpoints:
 
-	attrs = ['verb', 'service', 'url', 'tag', 'schema', 'payload']
+	attrs = ['verb', 'service', 'endpoint', 'tag', 'schema', 'payload']
 
 	def select_endpoint(self):
 		# no use for this yet
@@ -40,7 +40,7 @@ class Endpoints:
 		pass
 
 	def insert_endpoint(self, post_data, db):
-		e = validate_post_data(post_data, Endpoint.attrs)
+		e = validate_post_data(post_data, Endpoints.attrs)
 		if e.get('error'):
 			return {'error': endpoint['error']}
 		endpoint = (
@@ -51,7 +51,7 @@ class Endpoints:
 		return db.insert_endpoint(endpoint)
 
 	def update_endpoint(self, post_data, db):
-		attrs = Endpoint.attrs
+		attrs = Endpoints.attrs
 		attrs.append('id')
 		e = validate_post_data(post_data, attrs)
 		if e.get('error'):
@@ -79,8 +79,7 @@ class UI:
 		# render endpoint display
 		endpoints = db.select_endpoint()
 		# have to see what returns from db
-		# return render_template('index.html', endpoints)
-		return render_template('index.html')
+		return render_template('index.html', data=endpoints)
 
 	def insert_endpoint_page(self):
 		# render endpoint definition page
@@ -90,8 +89,7 @@ class UI:
 		# render endpoint definition page
 		endpoint = db.select_endpoint(id=id)
 		# have to see what returns from db
-		# return render_template('update.html', endpoint)
-		return render_template('update.html')
+		return render_template('update.html', data=endpoint)
 
 
 
