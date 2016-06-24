@@ -23,7 +23,8 @@ def docs():
 	# render docs page
 	return ui.docs_page()
 
-@app.route('/ui/insert_endpoint', methods=['GET', 'POST'])
+@app.route('/insert_endpoint', methods=['POST'])
+@app.route('/ui/insert_endpoint', methods=['GET'])
 def insert_endpoint():
 	# [POST]
 	# only returning data to call from AJAX
@@ -39,7 +40,7 @@ def insert_endpoint():
 	return json.dumps({'error': 'wrong http method'})
 
 
-@app.route('/ui/update_endpoint', methods=['PUT'])
+@app.route('/update_endpoint', methods=['PUT'])
 @app.route('/ui/update_endpoint/<int:id>', methods=['GET'])
 def update_endpoint(id=None):
 	# [PUT]
@@ -61,14 +62,14 @@ def update_endpoint(id=None):
 	# [other verb]
 	return json.dumps({'error': error})
 
-@app.route('/ui/delete_endpoint/<int:id>')
+@app.route('/delete_endpoint/<int:id>')
 def delete_endpoint(id):
 	# i think id has to be sent because of 
 	# route definition or else it just 404s
 	if id:
 		response = endpoints.delete_endpoint(id)
 	else:
-		response = {'error: no endpoint id provided'}
+		response = {'error': 'no endpoint id provided'}
 	return json.dumps(response)
 
 @app.route('/mimic/get')
