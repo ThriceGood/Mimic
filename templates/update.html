@@ -20,9 +20,10 @@
 
          <form class="" action="/signUp" method="post" role="form">
              <h3 class="form-signin-heading">Update endpoint </h3>
+             <a href="/ui/" style="float: right;">Index</a>
              <hr>
     		<br>
-             <input type="hidden" id='id' name="id" placeholder="id" value="{{data.id}}">
+             <input type="hidden" id='idx' name="idx" placeholder="idx" value="{{data.id}}">
              <input id='verb' name="verb" placeholder="verb" value="{{data.verb}}">
              <input id='service' name="service" placeholder="service" value="{{data.service}}">
              <input id='url' name="url" placeholder="url" value="{{data.url}}">
@@ -41,7 +42,7 @@
  	
  	$(function() {
 	    $('button').click(function() {
-	        var verb = $('#id').val();
+	        var idx = $('#idx').val();
 	        var verb = $('#verb').val();
 	        var service = $('#service').val();
 	        var url = $('#url').val();
@@ -50,7 +51,7 @@
 	        var response = $('#resp').val();
 
 	        dict = {
-	        	'id': id,
+	        	'id': idx,
 	        	'verb': verb,
 	        	'service': service,
 	        	'url': url,
@@ -60,8 +61,6 @@
 	        }
 
 	        var json_string = JSON.stringify(dict)
-
-	        // alert(json_string)
 	        console.log(json_string)
 
 	        $.ajax({
@@ -73,10 +72,14 @@
 	            data: json_string,
 	            dataType: "json",
 	            type: 'PUT',
-            	success: function(response) {
-                	// console.log(JSON.parse(response));
-                	// alert(JSON.parse(response));
-                	console.log(response);
+            	success: function(data) {
+                    if ('error' in data) {
+                        alert(data['error'])
+                    }
+                    else {
+                        alert(data['data'])
+                        window.location.href = "/ui/";
+                    }
             	},
             	error: function(error) {
                 	console.log(error);

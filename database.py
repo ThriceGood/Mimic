@@ -40,7 +40,7 @@ class Database:
 		try:
 			db.execute(insert, endpoint)
 			self.database.commit()
-			return {'data': 'success message'}
+			return {'data': 'success inserted'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}
 
@@ -49,7 +49,7 @@ class Database:
 		try:
 			db.execute(update, endpoint)
 			self.database.commit()
-			return {'data': 'success message'}
+			return {'data': 'endpoint updated'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}
 
@@ -58,6 +58,6 @@ class Database:
 		try:
 			db.execute(delete_one, (id,))
 			self.database.commit()
-			return {'data': 'success message'}
+			return {'data': 'endpoint delete'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}

@@ -12,6 +12,9 @@
 
 <div class="container">
 <h3>Mimics</h3>
+
+<a href="/ui/docs" style="float: right;padding: 10px;">Docs</a>
+<a href="/ui/insert_endpoint" style="float: right;padding: 10px;">Insert</a>
 <!-- <hr> -->
 <br>
 <table class="table">
@@ -30,16 +33,90 @@
 		<td>{{ ep.service }}</td>
 		<td>{{ ep.url }}</td>
 		<td>{{ ep.tag }}</td>
-		<td><button class="btn btn-sm btn-default">View</button></td>
-		<td><button class="btn btn-sm btn-default">View</button></td>
+		<td><button onclick="load_schema(`{{ ep.schema }}`)" data-toggle="modal" data-target="#schema_popup" class="btn btn-sm btn-default">View</button></td>
+		<td><button onclick="load_response(`{{ ep.payload }}`)" data-toggle="modal" data-target="#response_popup" class="btn btn-sm btn-default">View</button></td>
 		<td>
-			<button class="btn btn-sm btn-default">Edit</button>
-			<button class="btn btn-sm btn-danger">X</button>
+			<a class="btn btn-sm btn-default" href="/ui/update_endpoint/{{ ep.id }}">Edit</a>
+			<button onclick="del({{ ep.id }})" class="btn btn-sm btn-danger">X</button>
 		</td>
 	</tr>
 {% endfor %}
 </table>
 </div>
 
+
+<div id="schema_popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Schema</h4>
+      </div>
+      <div class="modal-body">
+        <p id="schema_content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="response_popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Response</h4>
+      </div>
+      <div class="modal-body">
+        <p id="response_content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
 </body>
+
+<script type="text/javascript">
+	
+function load_schema(schema) {
+	$( "#schema_content" ).html(function() {
+	  return schema;
+	});	
+}
+
+function load_response(response) {
+	$( "#response_content" ).html(function() {
+	  return response;
+	});	
+}
+
+function del(id) {
+	$.get( "/delete_endpoint/"+id, function(data) {
+	  console.log(data)
+	  d = JSON.parse(data)
+	  console.log(d)
+	  if ('error' in d) {
+	  	alert(d['error']);
+	  }
+	  else {
+	  	alert(d['data']);	  	
+	  }
+	  location.reload();
+	});
+}
+
+</script>
+
 </html>
