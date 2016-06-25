@@ -10,7 +10,6 @@ class Mimic:
 		self.service = service
 
 	def get(self, url, tag, query=None, service=None):
-		# maybe pass a dict in to be converted to query string
 		service = service if self.service is None else self.service
 		if service:
 			data = {
