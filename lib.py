@@ -1,5 +1,5 @@
 from flask import render_template
-from utils import payload_to_schema, validate_post_data
+from utils import compare_schema, validate_post_data
 import json
 
 class Mimic:
@@ -9,6 +9,7 @@ class Mimic:
 
 	def post(self, endpoint, db):
 		endpoint = json.loads(endpoint)
+		print endpoint
 		url = endpoint['url']
 		tag = endpoint['tag']
 		payload = endpoint['payload']
@@ -16,14 +17,18 @@ class Mimic:
 		    payload = json.loads(payload)
 		except Exception as e:
 			return {'error': 'invalid json in payload: {}'.format(e)}
-		schema = payload_to_schema(payload) # TODO
-		# query = (url, tag, schema) # TODO
-		query = (schema,)
+		query = (url, tag)
 		response = db.select_endpoint(query=query)
-		print response
-		if response:
-			return response[0]['payload']
-		return {'error': 'schema was wrong or something..'}
+		if type(response) is dict and response.get('error'):
+			return {'error': response['error']}
+		elif response:
+			schema = json.loads(response[0]['schema'])
+			result = compare_schema(payload, schema)
+			if result:				
+				payload_out = response[0]['payload']
+				return payload_out
+			return {'error': 'bad request schema'}
+		return {'error': 'no matching url or tag'}
 
 
 class Endpoints:
@@ -49,7 +54,6 @@ class Endpoints:
 		attrs.append('id')
 		e = validate_post_data(post_data, attrs)
 		attrs.remove('id')
-		print e  # fixing update issue
 		if e.get('error'):
 			return {'error': e['error']}
 		endpoint = (
@@ -67,6 +71,9 @@ class UI:
 
 	def docs_page(self):
 		return render_template('docs.html')
+
+	def test_page(self):
+		return render_template('test.html')
 
 	def index_page(self, db):
 		endpoints = db.select_endpoint()

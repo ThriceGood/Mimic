@@ -10,8 +10,9 @@ create_table = \
 
 select_all = 'SELECT * FROM endpoints'
 select_one = 'SELECT * FROM endpoints WHERE id=?'
+select_query = 'SELECT schema, payload FROM endpoints WHERE url=? AND tag=?'
 # select_query = 'SELECT payload FROM endpoints WHERE url=? AND tag=? AND schema=?'
-select_query = 'SELECT payload FROM endpoints WHERE schema=?'
+# select_query = 'SELECT payload FROM endpoints WHERE schema=?'
 
 insert = \
 'INSERT INTO endpoints (verb,service,url,tag,schema,payload) ' \

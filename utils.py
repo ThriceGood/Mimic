@@ -9,9 +9,15 @@ def validate_post_data(post_data, attrs):
 			return {'error': 'missing key: {}'.format(key)}
 	return post_data
 
+def compare_schema(payload, schema):
+	print payload
+	print 'to'
+	print schema
+	result = get_payload_shape(payload) == get_payload_shape(schema)
+	return result
 
-def payload_to_schema(payload):
-	# replicate keys with types instead of values
-	s = u'{"key": "type"}'
-	# return json.loads(payload)
-	return s
+def get_payload_shape(payload):
+    if isinstance(payload, dict):
+        return {key:get_payload_shape(payload[key]) for key in payload}
+    else:
+        return None

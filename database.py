@@ -25,22 +25,25 @@ class Database:
 
 	def select_endpoint(self, id=None, query=None):
 		db = self.get_cursor()
-		if id:
-			db.execute(select_one, [id])
-			return db.fetchone()
-		elif query:
-			db.execute(select_query, query)
-			return db.fetchall()
-		else:
-			db.execute(select_all)
-			return db.fetchall()
+		try:
+			if id:
+				db.execute(select_one, [id])
+				return db.fetchone()
+			elif query:
+				db.execute(select_query, query)
+				return db.fetchall()
+			else:
+				db.execute(select_all)
+				return db.fetchall()
+		except Exception as e:
+			return {'error': 'error: {}'.format(e)}
 
 	def insert_endpoint(self, endpoint):
 		db = self.get_cursor()
 		try:
 			db.execute(insert, endpoint)
 			self.database.commit()
-			return {'data': 'success inserted'}
+			return {'data': 'endpoint inserted'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}
 
@@ -58,6 +61,6 @@ class Database:
 		try:
 			db.execute(delete_one, (id,))
 			self.database.commit()
-			return {'data': 'endpoint delete'}
+			return {'data': 'endpoint deleted'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}

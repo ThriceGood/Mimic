@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="utf-8">
+     <meta charset="utf-8">
+  	 <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <title>Mimic Insert</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+ </head>
+ 
+ <body>
+
+     <div class="container">
+
+            <h3>Test a Mimic </h3>
+             <a href="/ui/" style="float: right;padding: 20px;">Index</a>
+             <hr>
+            <br>
+ 		<h4>POST</h4>
+         <form class="" action="/signUp" method="post" role="form">            
+             <input id='url' name="url"  placeholder="url">
+             <input id='tag' name="tag"  placeholder="tag">
+             <input id='payload' name="payload"  placeholder="payload">
+            <!-- <br> -->
+             <button id="POST" class="btn btn-sm btn-default" type="button">Send </button>
+         </form>
+
+         <br>
+
+ 		<h4>GET</h4>
+         <form class="" action="/signUp" method="post" role="form">                        
+             <input id='url' name="url"  placeholder="url">
+             <input id='tag' name="tag"  placeholder="tag">
+             <input id='query' name="query"  placeholder="query string">
+            <!-- <br> -->
+             <button id="GET" class="btn btn-sm btn-default" type="button">Send </button>
+         </form>
+
+         <br>
+         <br>
+         <h4>Mimic response</h4>
+	     <div>
+	     	<pre id='response'></pre>
+	     </div>
+      
+     </div>
+
+   
+ </body>
+
+ <script type="text/javascript">
+ 	
+ 	$(function() {
+	    $('#POST').click(function() {
+	        var url = $('#url').val();
+	        var tag = $('#tag').val();
+	        var response = $('#payload').val();
+
+	        dict = {
+	        	'url': url,
+	        	'tag': tag,
+	        	'payload': response,
+	        }
+
+	        var json_string = JSON.stringify(dict)
+	        console.log(json_string)
+
+	        $.ajax({
+	        	beforeSend: function(xhrObj){
+			        xhrObj.setRequestHeader("Content-Type","application/json");
+			        xhrObj.setRequestHeader("Accept","application/json");
+			    },
+	            url: '/mimic/post',
+	            data: json_string,
+	            dataType: "json",
+	            type: 'POST',
+            	success: function(data) {
+                    $("#response").html(function() {
+					  return data;
+					});	
+            	},
+            	error: function(error) {
+                	console.log(error);
+            	}
+        	});
+    	});
+	});
+
+
+ </script>
+ 
+ </html>
