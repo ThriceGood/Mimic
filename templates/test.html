@@ -6,7 +6,7 @@
      <meta charset="utf-8">
   	 <meta name="viewport" content="width=device-width, initial-scale=1">
  
-     <title>Mimic Insert</title>
+     <title>Mimic Test</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -35,11 +35,11 @@
 
  		<h4>GET</h4>
          <form class="" action="/signUp" method="post" role="form">                        
-             <input id='url' name="url"  placeholder="url">
-             <input id='tag' name="tag"  placeholder="tag">
+             <input id='q_url' name="q_url"  placeholder="url">
+             <input id='q_tag' name="q_tag"  placeholder="tag">
              <input id='query' name="query"  placeholder="query string">
 
-             <button onclick="GET()" class="btn btn-sm btn-default" type="button">Send </button>
+             <button id="GET" class="btn btn-sm btn-default" type="button">Send </button>
          </form>
 
          <br>
@@ -60,12 +60,12 @@
 	    $('#POST').click(function() {
 	        var url = $('#url').val();
 	        var tag = $('#tag').val();
-	        var response = $('#payload').val();
+	        var payload = $('#payload').val();
 
 	        dict = {
 	        	'url': url,
 	        	'tag': tag,
-	        	'payload': response,
+	        	'payload': payload,
 	        }
 
 	        var json_string = JSON.stringify(dict)
@@ -93,14 +93,41 @@
 	});
 
 
-    function GET() {
-        var query = $('#query').val();
-        $.get( "/mimic/get"+query, function(data) {
-            $("#response").html(function() {
-              return data;
+    $(function() {
+        $('#GET').click(function() {
+            var url = $('#q_url').val();
+            var tag = $('#q_tag').val();
+            var query = $('#query').val();
+
+            dict = {
+                'url': url,
+                'tag': tag,
+                'query': query,
+            }
+
+            var json_string = JSON.stringify(dict)
+            console.log(json_string)
+
+            $.ajax({
+                beforeSend: function(xhrObj){
+                    xhrObj.setRequestHeader("Content-Type","application/json");
+                    xhrObj.setRequestHeader("Accept","application/json");
+                },
+                url: '/mimic/get',
+                data: json_string,
+                dataType: "json",
+                type: 'POST',
+                success: function(data) {
+                    $("#response").html(function() {
+                      return JSON.stringify(data);
+                    }); 
+                },
+                error: function(error) {
+                    console.log(error);
+                }
             });
         });
-    }    
+    });    
 
  </script>
  

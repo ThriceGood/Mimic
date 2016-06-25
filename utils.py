@@ -1,4 +1,5 @@
 import json
+import urlparse
 
 def validate_post_data(post_data, attrs):
 	if len(post_data) > attrs:
@@ -9,10 +10,21 @@ def validate_post_data(post_data, attrs):
 			return {'error': 'missing key: {}'.format(key)}
 	return post_data
 
-def compare_schema(payload, schema):
-	print payload
-	print 'to'
-	print schema
+def query_to_schema(query, schema):
+	# any invalid querys will return false
+	query = dict(urlparse.parse_qsl(urlparse.urlsplit(query).query))
+	schema = dict(urlparse.parse_qsl(urlparse.urlsplit(schema).query))
+	try:
+		if len(query) != len(schema):
+			return False
+	except:
+		return False
+	for key in query:
+		if key not in schema:
+			return False
+	return True
+
+def payload_to_schema(payload, schema):
 	result = get_payload_shape(payload) == get_payload_shape(schema)
 	return result
 

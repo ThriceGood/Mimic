@@ -1,11 +1,27 @@
 from flask import render_template
-from utils import compare_schema, validate_post_data
+from utils import query_to_schema, payload_to_schema, validate_post_data
 import json
 
 class Mimic:
 
-	def get(self, query):
-		pass
+	def get(self, endpoint, db):
+		endpoint = json.loads(endpoint)
+		url = endpoint['url']
+		tag = endpoint['tag']
+		query = endpoint['query']
+		response = db.select_endpoint(query=(url, tag))
+		if type(response) is dict and response.get('error'):
+			return {'error': response['error']}
+		elif response and query:
+			schema = response[0]['schema']
+			# query to schema comparison
+			result = query_to_schema(query, schema)
+			if result:
+				return response[0]['payload']				
+			return {'error': 'bad query string'}
+		elif response:
+			return response[0]['payload']
+		return {'error': 'no matching url or tag'}
 
 	def post(self, endpoint, db):
 		"""
@@ -14,7 +30,6 @@ class Mimic:
 			in exact order, and NO LISTS!!
 		"""
 		endpoint = json.loads(endpoint)
-		print endpoint
 		url = endpoint['url']
 		tag = endpoint['tag']
 		payload = endpoint['payload']
@@ -22,16 +37,15 @@ class Mimic:
 		    payload = json.loads(payload)
 		except Exception as e:
 			return {'error': 'invalid json in payload: {}'.format(e)}
-		query = (url, tag)
-		response = db.select_endpoint(query=query)
+		response = db.select_endpoint(query=(url, tag))
 		if type(response) is dict and response.get('error'):
 			return {'error': response['error']}
 		elif response:
 			schema = json.loads(response[0]['schema'])
-			result = compare_schema(payload, schema)
+			# payload to schema comparison
+			result = payload_to_schema(payload, schema)
 			if result:				
-				payload_out = response[0]['payload']
-				return payload_out
+				return response[0]['payload']				
 			return {'error': 'bad request schema'}
 		return {'error': 'no matching url or tag'}
 

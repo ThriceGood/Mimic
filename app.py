@@ -10,26 +10,30 @@ endpoint = Endpoints()
 ui = UI()
 app = Flask(__name__)
 
+def get_db():
+	return Database()
+
+
 """ Mimic
 """
 
-@app.route('/mimic/get')
+@app.route('/mimic/get', methods=['POST'])
 def mimic_get():
-	""" Mimic generic GET endpoint"""
+	""" Mimic generic GET endpoint """
 	db = get_db()
-	query = request.query_string
-	return query
-	# return mimic.get(query)
+	endpoint = request.data
+	response = mimic.get(endpoint, db)
+	return json.dumps(response)
 
 @app.route('/mimic/post', methods=['POST'])
 def mimic_post():
-	""" Mimic generic POST endpoint"""
+	""" Mimic generic POST endpoint """
 	db = get_db()
 	endpoint = request.data
 	response = mimic.post(endpoint, db)
 	return json.dumps(response)
 
-""" UI and DD
+""" UI and DB
 """
 
 @app.route('/ui/')
@@ -78,9 +82,6 @@ def delete_endpoint(id):
 
 """ App 
 """
-
-def get_db():
-	return Database()
 
 @app.before_request
 def before_request():
