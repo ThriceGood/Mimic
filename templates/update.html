@@ -1,1 +1,91 @@
-<h1>UPDATE!!!!</h1>
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="utf-8">
+     <meta charset="utf-8">
+  	 <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <title>Mimic Update</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+ </head>
+ 
+ <body>
+ 
+     <div class="container">
+
+         <form class="" action="/signUp" method="post" role="form">
+             <h3 class="form-signin-heading">Update endpoint </h3>
+             <hr>
+    		<br>
+             <input type="hidden" id='id' name="id" placeholder="id" value="{{data.id}}">
+             <input id='verb' name="verb" placeholder="verb" value="{{data.verb}}">
+             <input id='service' name="service" placeholder="service" value="{{data.service}}">
+             <input id='url' name="url" placeholder="url" value="{{data.url}}">
+             <input id='tag' name="tag" placeholder="tag" value="{{data.tag}}">
+             <input id='schema' name="schema" placeholder="schema" value="{{data.schema}}">
+             <input id='resp' name="response" placeholder="response" value="{{data.payload}}">
+            <br>
+             <button class="btn btn-sm btn-default" type="button">Update </button>
+         </form>
+      
+     </div>
+   
+ </body>
+
+ <script type="text/javascript">
+ 	
+ 	$(function() {
+	    $('button').click(function() {
+	        var verb = $('#id').val();
+	        var verb = $('#verb').val();
+	        var service = $('#service').val();
+	        var url = $('#url').val();
+	        var tag = $('#tag').val();
+	        var schema = $('#schema').val();
+	        var response = $('#resp').val();
+
+	        dict = {
+	        	'id': id,
+	        	'verb': verb,
+	        	'service': service,
+	        	'url': url,
+	        	'tag': tag,
+	        	'schema': schema,
+	        	'payload': response,
+	        }
+
+	        var json_string = JSON.stringify(dict)
+
+	        // alert(json_string)
+	        console.log(json_string)
+
+	        $.ajax({
+	        	beforeSend: function(xhrObj){
+			        xhrObj.setRequestHeader("Content-Type","application/json");
+			        xhrObj.setRequestHeader("Accept","application/json");
+			    },
+	            url: '/update_endpoint',
+	            data: json_string,
+	            dataType: "json",
+	            type: 'PUT',
+            	success: function(response) {
+                	// console.log(JSON.parse(response));
+                	// alert(JSON.parse(response));
+                	console.log(response);
+            	},
+            	error: function(error) {
+                	console.log(error);
+            	}
+        	});
+    	});
+	});
+
+
+ </script>
+ 
+ </html>

@@ -56,7 +56,7 @@ class Database:
 	def delete_endpoint(self, id):
 		db = self.get_cursor()
 		try:
-			db.execute(delete, endpoint)
+			db.execute(delete_one, (id,))
 			self.database.commit()
 			return {'data': 'success message'}
 		except Exception as e:

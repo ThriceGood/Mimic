@@ -48,16 +48,17 @@ class Endpoints:
 		attrs = Endpoints.attrs
 		attrs.append('id')
 		e = validate_post_data(post_data, attrs)
+		print e  # fixing update issue
 		if e.get('error'):
 			return {'error': endpoint['error']}
 		endpoint = (
-			e['id'], e['verb'], e['service'], 
+			e['verb'], e['service'], 
 		    e['url'], e['tag'], 
-		    e['schema'], e['payload']
+		    e['schema'], e['payload'], e['id']
 		)
 		return db.update_endpoint(endpoint)
 
-	def delete_endpoint(self, id):
+	def delete_endpoint(self, id, db):
 		return db.delete_endpoint(id)
 
 

@@ -11,16 +11,31 @@
 <body>
 
 <div class="container">
-<h2>Mimics</h2>
+<h3>Mimics</h3>
+<!-- <hr> -->
+<br>
 <table class="table">
+<tr>
+	<th>Verb</th>
+	<th>Service</th>
+	<th>Url</th>
+	<th>Tag</th>
+	<th>Schema</th>
+	<th>Response</th>
+	<th>Actions</th>
+</tr>
 {% for ep in data %}
 	<tr>
 		<td>{{ ep.verb }}</td>
 		<td>{{ ep.service }}</td>
 		<td>{{ ep.url }}</td>
 		<td>{{ ep.tag }}</td>
-		<td>{{ ep.schema }}</td>
-		<td>{{ ep.payload }}</td>
+		<td><button class="btn btn-sm btn-default">View</button></td>
+		<td><button class="btn btn-sm btn-default">View</button></td>
+		<td>
+			<button class="btn btn-sm btn-default">Edit</button>
+			<button class="btn btn-sm btn-danger">X</button>
+		</td>
 	</tr>
 {% endfor %}
 </table>

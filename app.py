@@ -11,7 +11,7 @@ ui = UI()
 db = Database()
 app = Flask(__name__)
 
-""" MIMIC 
+""" Mimic
 """
 
 @app.route('/mimic/get')
@@ -54,7 +54,7 @@ def update_endpoint(id=None):
 	error = 'wrong verb'
 	if request.method == 'PUT':
 		post_data = json.loads(request.data)
-		reponse = endpoint.update_endpoint(post_data, db)
+		response = endpoint.update_endpoint(post_data, db)
 		return json.dumps(response)
 	elif request.method == 'GET':
 		return ui.update_endpoint_page(id, db)
@@ -62,7 +62,7 @@ def update_endpoint(id=None):
 
 @app.route('/delete_endpoint/<int:id>')
 def delete_endpoint(id):
-	response = endpoints.delete_endpoint(id)
+	response = endpoint.delete_endpoint(id, db)
 	return json.dumps(response)
 
 
