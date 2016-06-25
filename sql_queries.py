@@ -3,24 +3,23 @@ create_table = \
 'id INTEGER PRIMARY KEY,' \
 'verb TEXT,' \
 'service TEXT,' \
-'endpoint TEXT,' \
+'url TEXT,' \
 'tag TEXT UNIQUE,' \
 'schema TEXT,' \
 'payload TEXT)'
 
 select_all = 'SELECT * FROM endpoints'
-
 select_one = 'SELECT * FROM endpoints WHERE id=?'
+# select_query = 'SELECT payload FROM endpoints WHERE url=? AND tag=? AND schema=?'
+select_query = 'SELECT payload FROM endpoints WHERE schema=?'
 
-select_query = 'SELECT * FROM endpoints WHERE endpoint=?, tag=?, schema=?'
-
-insert = 'INSERT INTO endpoints (verb,service,endpoint,tag,schema,payload) VALUES (?,?,?,?,?,?)'
-
+insert = \
+'INSERT INTO endpoints (verb,service,url,tag,schema,payload) ' \
+'VALUES (?,?,?,?,?,?)'
 update = \
 'UPDATE endpoints SET ' \
-'verb=?, service=?, endpoint=?, tag=?, schema=?, payload=? ' \
+'verb=?, service=?, url=?, tag=?, schema=?, payload=? ' \
 'WHERE id=?' 
 
 delete_all = 'DELETE FROM endpoints'
-
 delete_one = 'DELETE FROM endpoints WHERE id=?'

@@ -1,4 +1,4 @@
-
+import json
 
 def validate_post_data(post_data, attrs):
 	if len(post_data) > attrs:
@@ -10,5 +10,8 @@ def validate_post_data(post_data, attrs):
 	return post_data
 
 
-def payload_to_schema():
-	pass	
+def payload_to_schema(payload):
+	# replicate keys with types instead of values
+	s = u'{"key": "type"}'
+	# return json.loads(payload)
+	return s

@@ -1,3 +1,30 @@
-<h1>INDEX!!!!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mimic Index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-{{ data }}
+<div class="container">
+<h2>Mimics</h2>
+<table class="table">
+{% for ep in data %}
+	<tr>
+		<td>{{ ep.verb }}</td>
+		<td>{{ ep.service }}</td>
+		<td>{{ ep.url }}</td>
+		<td>{{ ep.tag }}</td>
+		<td>{{ ep.schema }}</td>
+		<td>{{ ep.payload }}</td>
+	</tr>
+{% endfor %}
+</table>
+</div>
+
+</body>
+</html>

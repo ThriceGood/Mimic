@@ -6,7 +6,6 @@ class Database:
 
 	def __init__(self):
 		self.database = sqlite3.connect('db/database')
-		# self.database.row_factory = sqlite3.Row
 		self.database.row_factory = self.dict_factory
 		self.create_table()
 
@@ -21,12 +20,10 @@ class Database:
 
 	def create_table(self):
 		db = self.get_cursor()
-		with closing(db) as db:
-			db.execute(create_table)
+		db.execute(create_table)
+		self.database.commit()
 
 	def select_endpoint(self, id=None, query=None):
-		# need to get back a dict for jsoning
-		# db has to return 'Rows'
 		db = self.get_cursor()
 		if id:
 			db.execute(select_one, [id])
@@ -40,27 +37,27 @@ class Database:
 
 	def insert_endpoint(self, endpoint):
 		db = self.get_cursor()
-		with closing(db) as db:
-			try:
-				db.execute(insert, endpoint)
-				return {'data': 'success message'}
-			except Exception as e:
-				return {'error': str(e)}
+		try:
+			db.execute(insert, endpoint)
+			self.database.commit()
+			return {'data': 'success message'}
+		except Exception as e:
+			return {'error': 'error: {}'.format(e)}
 
 	def update_endpoint(self, endpoint):
 		db = self.get_cursor()
-		with closing(db) as db:
-			try:
-				db.execute(update, endpoint)
-				return {'data': 'success message'}
-			except Exception as e:
-				return {'error': str(e)}
+		try:
+			db.execute(update, endpoint)
+			self.database.commit()
+			return {'data': 'success message'}
+		except Exception as e:
+			return {'error': 'error: {}'.format(e)}
 
 	def delete_endpoint(self, id):
 		db = self.get_cursor()
-		with closing(db) as db:
-			try:
-				db.execute(delete, [id])
-				return {'data': 'success message'}
-			except Exception as e:
-				return {'error': str(e)}
+		try:
+			db.execute(delete, endpoint)
+			self.database.commit()
+			return {'data': 'success message'}
+		except Exception as e:
+			return {'error': 'error: {}'.format(e)}
