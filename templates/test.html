@@ -27,7 +27,7 @@
              <input id='url' name="url"  placeholder="url">
              <input id='tag' name="tag"  placeholder="tag">
              <input id='payload' name="payload"  placeholder="payload">
-            <!-- <br> -->
+            
              <button id="POST" class="btn btn-sm btn-default" type="button">Send </button>
          </form>
 
@@ -38,8 +38,8 @@
              <input id='url' name="url"  placeholder="url">
              <input id='tag' name="tag"  placeholder="tag">
              <input id='query' name="query"  placeholder="query string">
-            <!-- <br> -->
-             <button id="GET" class="btn btn-sm btn-default" type="button">Send </button>
+
+             <button onclick="GET()" class="btn btn-sm btn-default" type="button">Send </button>
          </form>
 
          <br>
@@ -82,7 +82,7 @@
 	            type: 'POST',
             	success: function(data) {
                     $("#response").html(function() {
-					  return data;
+					  return JSON.stringify(data);
 					});	
             	},
             	error: function(error) {
@@ -92,6 +92,15 @@
     	});
 	});
 
+
+    function GET() {
+        var query = $('#query').val();
+        $.get( "/mimic/get"+query, function(data) {
+            $("#response").html(function() {
+              return data;
+            });
+        });
+    }    
 
  </script>
  

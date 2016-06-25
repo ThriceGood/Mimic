@@ -8,6 +8,11 @@ class Mimic:
 		pass
 
 	def post(self, endpoint, db):
+		"""
+			so far payload/schema comparison
+			is only on dicts where keys are
+			in exact order, and NO LISTS!!
+		"""
 		endpoint = json.loads(endpoint)
 		print endpoint
 		url = endpoint['url']

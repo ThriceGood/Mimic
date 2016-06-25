@@ -1,6 +1,6 @@
 """ a user based system with shared database would be cool...
 """
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request
 from lib import Mimic, Endpoints, UI
 from database import Database
 import json
@@ -17,8 +17,9 @@ app = Flask(__name__)
 def mimic_get():
 	""" Mimic generic GET endpoint"""
 	db = get_db()
-	query = request.query_string()
-	return mimic.get(query)
+	query = request.query_string
+	return query
+	# return mimic.get(query)
 
 @app.route('/mimic/post', methods=['POST'])
 def mimic_post():
