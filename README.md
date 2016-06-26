@@ -3,6 +3,8 @@
          <h3>Mimic Docs</h3>
          <a href="/ui/" style="float: right;padding: 10px;">Index</a>
     <hr>
+    <a href="https://github.com/ThriceGood/Mimic">source code</a>
+    <br>
     <br>
 
     <blockquote>
