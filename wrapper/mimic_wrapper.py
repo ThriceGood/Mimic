@@ -4,6 +4,10 @@ import json
 mimic_get_url = 'http://127.0.0.1:5000/mimic/get'
 mimic_post_url = 'http://127.0.0.1:5000/mimic/post'
 
+""" maybe check for the existance of errors and raise exception if 
+	found should probably fail when an error is detected right?
+""" 
+
 class Mimic:
 
 	def __init__(self, service=None):
@@ -43,10 +47,11 @@ class Mimic:
 				'service has not been set, generic service ' \
 				'call requires service name as argument')
 
-	def put(self):
+	def put(self, id, url, tag, payload, service=None):
 		service = service if self.service is None else self.service
 		if service:
 			data = json.dumps({
+				'id': id,
 				'service': service, 
 				'url': url, 
 				'tag': tag, 

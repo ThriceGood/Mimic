@@ -1,8 +1,8 @@
 from mimic_wrapper import Mimic
 
 # POST
-mimic = Mimic()
 # generic mimic
+mimic = Mimic()
 url = '/orchestration/run'
 tag = 'orch run'
 payload = '{"go": 1, "for it": 2}'

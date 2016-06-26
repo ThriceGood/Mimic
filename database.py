@@ -31,7 +31,7 @@ class Database:
 				return db.fetchone()
 			elif query:
 				db.execute(select_query, query)
-				return db.fetchall()
+				return db.fetchone()
 			else:
 				db.execute(select_all)
 				return db.fetchall()
@@ -43,7 +43,7 @@ class Database:
 		try:
 			db.execute(insert, endpoint)
 			self.database.commit()
-			return {'data': 'endpoint inserted'}
+			return {'success': 'endpoint inserted'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}
 
@@ -52,7 +52,7 @@ class Database:
 		try:
 			db.execute(update, endpoint)
 			self.database.commit()
-			return {'data': 'endpoint updated'}
+			return {'success': 'endpoint updated'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}
 
@@ -61,6 +61,6 @@ class Database:
 		try:
 			db.execute(delete_one, (id,))
 			self.database.commit()
-			return {'data': 'endpoint deleted'}
+			return {'success': 'endpoint deleted'}
 		except Exception as e:
 			return {'error': 'error: {}'.format(e)}

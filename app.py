@@ -1,7 +1,9 @@
 """ a user based system with shared database would be cool...
 """
 from flask import Flask, request
-from lib import Mimic, Endpoints, UI
+from mimic import Mimic
+from endpoints import Endpoints
+from ui import UI
 from database import Database
 import json
 
@@ -65,7 +67,6 @@ def insert_endpoint():
 @app.route('/ui/update_endpoint/<int:id>', methods=['GET'])
 def update_endpoint(id=None):
 	db = get_db()
-	error = 'wrong verb'
 	if request.method == 'PUT':
 		post_data = json.loads(request.data)
 		response = endpoint.update_endpoint(post_data, db)
@@ -81,7 +82,7 @@ def delete_endpoint(id):
 	return json.dumps(response)
 
 
-""" before, after 
+""" app
 """
 
 @app.before_request
