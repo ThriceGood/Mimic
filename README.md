@@ -1,4 +1,22 @@
-<div class="container">
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="utf-8">
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <title>Mimic Docs</title>
+ 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
+ </head>
+ 
+ <body>
+ 
+     <div class="container">
  
          <h3>Mimic Docs</h3>
          <a href="/ui/" style="float: right;padding: 10px;">Index</a>
@@ -7,13 +25,13 @@
 
     <blockquote>
          <p><b>Mimic is a REST service mocker</b></p>
-         <p>It provides an interface to define mock endpoints, their desired request schema and their responses. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data definition endpoints and the user interface.</p>
+         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data definition endpoints and the user interface.</p>
     </blockquote>
     <br>
     <blockquote>
 
          <p><b>Mimic endpoints</b></p>
-         <p>Mimic is a microservice designed to mock REST APIs. It (currently) has two endpoints for interacting with mock endpoints, a generic POST endpoint and a generic GET endpoint.</p>
+         <p>Mimic (currently) has two endpoints for interacting with mock endpoints, a generic POST endpoint and a generic GET endpoint.</p>
          <br>
          <h5><b>POST</b></h5>
          <small>http://localhost:5000/mimic/post</small>
@@ -25,8 +43,8 @@
                 "payload": "JSON string representing the real request body"
              }
          </pre>
-         <p>Mimic checks the database for an enpoint that matches the url and tag and if it finds a match returns it's schema and response payload. The request payload is compared to the endpoints schema and if it matches, the response payload is returned</p>
-         <p>In this way, you can post a request to the Mimic specifying the mock endpoint, have it validate your request payload and return your desired response payload</p>
+         <p>Mimic checks the database for an enpoint that matches the url and tag and if it finds a match returns it's schema and response payload. The request payload is compared to the endpoints schema and if it matches, the response payload is returned.</p>
+         <p>In this way, you can post a request to the Mimic specifying the mock endpoint, have it validate your request payload and return your desired response payload.</p>
          <br>
          <h5><b>GET</b></h5>
          <small>http://localhost:5000/mimic/get</small>
@@ -133,6 +151,39 @@
         <h5><b>Docs</b></h5>
         <small>http://localhost/ui/docs</small>
         <p>This endpoint returns this very Docs page!.</p>
+    </blockquote>    
+    <br>
+    <blockquote>
+        <p><b>The Mimic wrapper</b></p>
+         <p>A wrapper is included to allow you to easily replace service wrapper calls with Mimic calls. A Mimic specific to a service can be instanciated with the service name as an argument. Alternatively a generic Mimic can be instanciated with no service name, although a service name will have to be passed to each call.</p>
+         <h5><b>Usage examples:</b></h5>
+         <pre>
+            from mimic_wrapper import Mimic
+
+            # POST
+            # generic mimic
+            mimic = Mimic()
+            url = '/service1/url'
+            tag = 'my service1 call'
+            payload = '{"key1": "value1", "key2": "value2"}'
+            response = mimic.post(service='service1', url=url, tag=tag, payload=payload)
+            print response
+
+            # GET, query
+            mimic = Mimic('service2')
+            url = '/service2/url'
+            tag = 'my service2 call'
+            query = '?name=alarm'
+            response = mimic.get(url=url, tag=tag, query=query)
+            print response
+
+            # GET, no query
+            mimic = Mimic('service3')
+            url = '/service3/url'
+            tag = 'my service3 call'
+            response = mimic.get(url=url, tag=tag)
+            print response
+         </pre>
     </blockquote>
     <br>
     <br>
@@ -142,6 +193,9 @@
     </blockquote>
 
 
-
       
      </div>
+   
+ </body>
+ 
+ </html>
