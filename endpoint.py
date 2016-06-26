@@ -1,7 +1,7 @@
 from utils import validate_post_data
 
 
-class Endpoints:
+class Endpoint:
 
 	attrs = ['verb', 'service', 'url', 'tag', 'schema', 'payload']
 
@@ -9,7 +9,7 @@ class Endpoints:
 		pass
 
 	def insert_endpoint(self, post_data, db):
-		e = validate_post_data(post_data, Endpoints.attrs)
+		e = validate_post_data(post_data, Endpoint.attrs)
 		if e.get('error'):
 			return {'error': e['error']}
 		endpoint = (
@@ -20,7 +20,7 @@ class Endpoints:
 		return db.insert_endpoint(endpoint)
 
 	def update_endpoint(self, post_data, db):
-		attrs = Endpoints.attrs
+		attrs = Endpoint.attrs
 		attrs.append('id')
 		e = validate_post_data(post_data, attrs)
 		attrs.remove('id')

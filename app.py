@@ -2,13 +2,13 @@
 """
 from flask import Flask, request
 from mimic import Mimic
-from endpoints import Endpoints
+from endpoint import Endpoint
 from ui import UI
 from database import Database
 import json
 
 mimic = Mimic()
-endpoint = Endpoints()
+endpoint = Endpoint()
 ui = UI()
 app = Flask(__name__)
 
