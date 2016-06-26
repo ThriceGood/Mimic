@@ -1,7 +1,7 @@
 <div class="container">
  
          <h3>Mimic Docs</h3>
-         <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">Index</a>
+         <a href="http://localhost:5000/ui/docs" style="float: right;padding: 10px;">Index</a>
     <hr>
     <a href="https://github.com/ThriceGood/Mimic">source code</a>
     <br>
