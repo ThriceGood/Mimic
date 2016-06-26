@@ -8,7 +8,7 @@ class Mimic:
 		endpoint = json.loads(endpoint)
 		url = endpoint['url']
 		tag = endpoint['tag']
-		query = endpoint['query']
+		query = endpoint.get('query')
 		response = db.select_endpoint(query=(url, tag))
 		if type(response) is dict and response.get('error'):
 			return {'error': response['error']}

@@ -80,7 +80,8 @@ def delete_endpoint(id):
 	response = endpoint.delete_endpoint(id, db)
 	return json.dumps(response)
 
-""" App 
+
+""" before, after 
 """
 
 @app.before_request
