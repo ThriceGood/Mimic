@@ -30,6 +30,6 @@ setup(
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
             'README.md',
             )),
-
+    zip_safe=False,
     packages=find_packages(),
     )
