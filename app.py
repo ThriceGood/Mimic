@@ -25,7 +25,9 @@ def mimic_get():
 	db = get_db()
 	endpoint = request.data
 	response = mimic.get(endpoint, db)
-	return json.dumps(response)
+	if type(response) is dict:
+		return json.dumps(response)
+	return response
 
 @app.route('/mimic/post', methods=['POST'])
 def mimic_post():
@@ -33,7 +35,9 @@ def mimic_post():
 	db = get_db()
 	endpoint = request.data
 	response = mimic.post(endpoint, db)
-	return json.dumps(response)
+	if type(response) is dict:
+		return json.dumps(response)
+	return response
 
 """ UI and DB
 """
