@@ -1,4 +1,4 @@
-from mimic_wrapper import Mimic
+from wrapper.mimic_wrapper import Mimic
 
 # POST
 # generic mimic
