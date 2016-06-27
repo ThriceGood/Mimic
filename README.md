@@ -3,7 +3,6 @@
          <h3>Mimic Docs</h3>
          <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
     <hr>
-    <a href="https://github.com/ThriceGood/Mimic">source code</a>
     <br>
     <br>
 
