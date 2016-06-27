@@ -13,6 +13,15 @@
     </blockquote>
     <br>
     <blockquote>
+         <p><b>Installation</b></p>
+        <p>Get the repo.</p>
+        <p>run: <code>$ python setup.py install</code></p>
+        <p>start mimic with: <code>$ mimic</code></p>
+        <p>mimi is now running on localhost:5000</p>
+        <p>You can ge to the UI index with localhost:5000/ui</p>
+    </blockquote>
+    <br>
+    <blockquote>
 
          <p><b>Mimic endpoints</b></p>
          <p>Mimic (currently) has two endpoints for interacting with mock endpoints, a generic POST endpoint and a generic GET endpoint.</p>
