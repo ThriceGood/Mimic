@@ -16,9 +16,9 @@
          <p><b>Installation</b></p>
         <p>Get the repo.</p>
         <p>run: <code>$ python setup.py install</code></p>
-        <p>start mimic with: <code>$ mimic</code></p>
-        <p>mimi is now running on localhost:5000</p>
-        <p>You can ge to the UI index with localhost:5000/ui</p>
+        <p>start Mimic with: <code>$ mimic</code></p>
+        <p>Mimic is now running on: localhost:5000</p>
+        <p>You can get to the UI index with: localhost:5000/ui</p>
     </blockquote>
     <br>
     <blockquote>
