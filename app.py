@@ -93,6 +93,8 @@ def before_request():
 def teardown_request(exception):
 	pass
 
+def run():
+	app.run(debug=True)
 
 if __name__ == '__main__':
 	# app.run()

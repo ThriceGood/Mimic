@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import glob
 import os.path
 
 def read_requirements(pathname):
@@ -11,8 +10,8 @@ def project_path(*names):
 
 
 setup(
-    name='hsbcsps',
-    version='0.4.0',
+    name='mimic',
+    version='0.1.0',
 
     install_requires=read_requirements(os.path.join(os.path.dirname(__file__), 'requirements.txt')),
 
@@ -26,8 +25,8 @@ setup(
     url="https://github.com/ThriceGood/Mimic",
     author='Jonathan Norris',
     author_email='jonathan.norris88@hotmail.com',
-    classifiers="Programming Language :: Python :: 2.7"
-    description=__doc__.strip(),
+    classifiers="Programming Language :: Python :: 2.7",
+    description=__doc__,
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
             'README.md',
             )),
