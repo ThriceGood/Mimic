@@ -2,13 +2,15 @@
  
          <h3>Mimic Docs</h3>
          <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
+         <a href="http://localhost:5000/ui/insert" style="float: right;padding: 10px;">local insert</a>
+         <a href="http://localhost:5000/ui/test" style="float: right;padding: 10px;">local test</a>
     <hr>
     <br>
     <br>
 
     <blockquote>
          <p><b>Mimic is a REST service mocker</b></p>
-         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.</p>
+         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. A user makes a request to the mimic specifying the desired mock endpoint. Sent with this request is a payload containing the actual JSON that would be sent to the real service or API. The mimic compares the requests payload schema to the schema of the related mock endpoint, if it is a match, the desired response data is returned. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.</p>
     </blockquote>
     <br>
     <blockquote>
