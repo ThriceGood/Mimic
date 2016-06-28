@@ -131,25 +131,25 @@
         <small>http://localhost/ui/</small>
         <p>This endpoint returns an index page. It contains a table of all mock endpoints. Each endpoint row has a link for updating and deleting that endpoint.</p>
         <br>
-        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/pics/index.png">
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/index.png">
         <br>
          <h5><b>Insert</b></h5>
         <small>http://localhost/ui/inser_endpoint</small>
         <p>This endpoint returns an insert page. It contains a form that allows you to define new mock endpoints.</p>
         <br>
-        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/pics/insert.png">
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/insert.png">
         <br>
          <h5><b>Update</b></h5>
         <small>http://localhost/ui/update_endpoint/{id}</small>
         <p>This endpoint returns an update page. It contains a pre populated form that allows you to update the existing mock endpoint. It is accessed from the endpoint table in the index page.</p>
         <br>
-        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/pics/update.png">
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/update.png">
         <br>
         <h5><b>Test</b></h5>
         <small>http://localhost/ui/test</small>
         <p>This endpoint returns an endpoint test page. This page allows you to test a particular mock endpoint. You are provided with a form that allow you to enter the tag, url and payload (or query) for an endpoint and query it to see the response.</p>
         <br>
-        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/pics/test.png">
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/test.png">
         <br>
         <h5><b>Docs</b></h5>
         <small>http://localhost/ui/docs</small>
