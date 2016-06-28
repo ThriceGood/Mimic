@@ -13,7 +13,7 @@ class Mimic:
 	def __init__(self, service=None):
 		self.service = service
 
-	def get(self, url, tag, query=None, service=None):
+	def get(self, url, tag, query=None, service=None, raw=False):
 		service = service if self.service is None else self.service
 		if service:
 			data = {
@@ -25,13 +25,15 @@ class Mimic:
 				data['query'] = query
 			data = json.dumps(data)
 			response = requests.post(mimic_get_url, data=data)
-			return response.text
+			if raw:
+				return response.text
+			return json.loads(response.text)
 		else:
 			raise AttributeError(
 				'service has not been set, generic service ' \
 				'call requires service name as argument')
 
-	def post(self, url, tag, payload, service=None):
+	def post(self, url, tag, payload, service=None, raw=False):
 		service = service if self.service is None else self.service
 		if service:
 			data = json.dumps({
@@ -41,13 +43,15 @@ class Mimic:
 				'payload': payload
 				})
 			response = requests.post(mimic_post_url, data=data)
-			return response.text
+			if raw:
+				return response.text
+			return json.loads(response.text)
 		else:
 			raise AttributeError(
 				'service has not been set, generic service ' \
 				'call requires service name as argument')
 
-	def put(self, id, url, tag, payload, service=None):
+	def put(self, id, url, tag, payload, service=None, raw=False):
 		service = service if self.service is None else self.service
 		if service:
 			data = json.dumps({
@@ -58,7 +62,9 @@ class Mimic:
 				'payload': payload
 				})
 			response = requests.post(mimic_post_url, data=data)
-			return response.text
+			if raw:
+				return response.text
+			return json.loads(response.text)
 		else:
 			raise AttributeError(
 				'service has not been set, generic service ' \
