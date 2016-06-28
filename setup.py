@@ -25,7 +25,7 @@ setup(
     url="https://github.com/ThriceGood/Mimic",
     author='Jonathan Norris',
     author_email='jonathan.norris88@hotmail.com',
-    classifiers="Programming Language :: Python :: 2.7",
+    classifiers=["Programming Language :: Python :: 2.7"],
     description=__doc__,
     long_description='\n\n'.join(open(project_path(name)).read() for name in (
             'README.md',

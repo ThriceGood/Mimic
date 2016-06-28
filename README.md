@@ -1,14 +1,16 @@
 <div class="container">
  
          <h3>Mimic Docs</h3>
-         <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
+         <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a> -
+         <a href="http://localhost:5000/ui/insert" style="float: right;padding: 10px;">local insert</a> -
+         <a href="http://localhost:5000/ui/test" style="float: right;padding: 10px;">local test</a>
     <hr>
     <br>
     <br>
 
     <blockquote>
          <p><b>Mimic is a REST service mocker</b></p>
-         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.</p>
+         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. A user makes a request to the mimic specifying the desired mock endpoint. Sent with this request is a payload containing the actual JSON that would be sent to the real service or API. The mimic compares the requests payload schema to the schema of the related mock endpoint, if it is a match, the desired response data is returned. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.</p>
     </blockquote>
     <br>
     <blockquote>
@@ -129,17 +131,25 @@
         <small>http://localhost/ui/</small>
         <p>This endpoint returns an index page. It contains a table of all mock endpoints. Each endpoint row has a link for updating and deleting that endpoint.</p>
         <br>
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/index.png">
+        <br>
          <h5><b>Insert</b></h5>
         <small>http://localhost/ui/inser_endpoint</small>
         <p>This endpoint returns an insert page. It contains a form that allows you to define new mock endpoints.</p>
+        <br>
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/insert.png">
         <br>
          <h5><b>Update</b></h5>
         <small>http://localhost/ui/update_endpoint/{id}</small>
         <p>This endpoint returns an update page. It contains a pre populated form that allows you to update the existing mock endpoint. It is accessed from the endpoint table in the index page.</p>
         <br>
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/update.png">
+        <br>
         <h5><b>Test</b></h5>
         <small>http://localhost/ui/test</small>
         <p>This endpoint returns an endpoint test page. This page allows you to test a particular mock endpoint. You are provided with a form that allow you to enter the tag, url and payload (or query) for an endpoint and query it to see the response.</p>
+        <br>
+        <img src="https://raw.githubusercontent.com/ThriceGood/mimic/master/.pics/test.png">
         <br>
         <h5><b>Docs</b></h5>
         <small>http://localhost/ui/docs</small>
