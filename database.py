@@ -1,6 +1,5 @@
 import sqlite3
 from sql_queries import *
-from contextlib import closing
 
 class Database:
 
@@ -23,14 +22,14 @@ class Database:
 		db.execute(create_table)
 		self.database.commit()
 
-	def select_endpoint(self, id=None, query=None):
+	def select_endpoint(self, id=None, where=None):
 		db = self.get_cursor()
 		try:
 			if id:
 				db.execute(select_one, [id])
 				return db.fetchone()
-			elif query:
-				db.execute(select_query, query)
+			elif where:
+				db.execute(select_query, where)
 				return db.fetchone()
 			else:
 				db.execute(select_all)

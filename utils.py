@@ -1,5 +1,6 @@
 import json
 import urlparse
+from deepdiff import DeepDiff
 
 def validate_post_data(post_data, attrs):
 	if len(post_data) > attrs:
@@ -10,8 +11,8 @@ def validate_post_data(post_data, attrs):
 			return {'error': 'missing key: {}'.format(key)}
 	return post_data
 
-def query_to_schema(query, schema):
-	# any invalid querys will return false
+def validate_query(query, schema):
+	# query strings to dicts, any invalid querys will equal false
 	query = dict(urlparse.parse_qsl(urlparse.urlsplit(query).query))
 	schema = dict(urlparse.parse_qsl(urlparse.urlsplit(schema).query))
 	try:
@@ -24,23 +25,23 @@ def query_to_schema(query, schema):
 			return False
 	return True
 
-def payload_to_schema(payload, schema):
-	result = get_payload_shape(payload) == get_payload_shape(schema)
+def validate_payload(payload, schema):
+	diff = DeepDiff(payload, schema)
+	result = {'exceptions': []}	
+	not_allowed = ['dic_item_added', 'dic_item_removed']
+	for exception, details in diff.iteritems():
+		if exception in not_allowed:
+			result['exceptions'].append({exception: str(details)})
 	return result
 
-def get_payload_shape(payload):
-    if isinstance(payload, dict):
-        return {key:get_payload_shape(payload[key]) for key in payload}
-    else:
-        return None
 
-"""
-SIMPLE RULES:
 
-validate schema against multiple schemas
-to get different responses
-
-get all keys and values in a dict on its own
-you could do simple value checks with it
-
-"""
+# might be able to use this to get all keys and values
+# def payload_to_schema(payload, schema):
+# 	result = get_payload_shape(payload) == get_payload_shape(schema)
+# 	return result
+# def get_payload_shape(payload):
+#     if isinstance(payload, dict):
+#         return {key:get_payload_shape(payload[key]) for key in payload}
+#     else:
+#         return None

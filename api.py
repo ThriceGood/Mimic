@@ -65,7 +65,6 @@ def insert_endpoint():
 		return json.dumps(response)
 	elif request.method == 'GET':
 		return ui.insert_endpoint_page()
-	return json.dumps({'error': 'wrong http method'})
 
 @app.route('/update_endpoint', methods=['PUT'])
 @app.route('/ui/update_endpoint/<int:id>', methods=['GET'])
@@ -77,7 +76,6 @@ def update_endpoint(id=None):
 		return json.dumps(response)
 	elif request.method == 'GET':
 		return ui.update_endpoint_page(id, db)
-	return json.dumps({'error': error})
 
 @app.route('/delete_endpoint/<int:id>' )
 def delete_endpoint(id):
@@ -89,17 +87,9 @@ def delete_endpoint(id):
 """ app
 """
 
-@app.before_request
-def before_request():
-	pass
-
-@app.teardown_request
-def teardown_request(exception):
-	pass
-
 def run():
 	app.run(debug=True)
+	# app.run()
 
 if __name__ == '__main__':
-	# app.run()
 	app.run(debug=True)

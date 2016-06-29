@@ -19,8 +19,7 @@ class Mimic:
 			data = {
 				'service': service, 
 				'url': url, 
-				'tag': tag
-				}
+				'tag': tag}
 			if query:
 				data['query'] = query
 			data = json.dumps(data)
@@ -40,8 +39,7 @@ class Mimic:
 				'service': service, 
 				'url': url, 
 				'tag': tag, 
-				'payload': payload
-				})
+				'payload': payload})
 			response = requests.post(mimic_post_url, data=data)
 			if raw:
 				return response.text
@@ -59,8 +57,7 @@ class Mimic:
 				'service': service, 
 				'url': url, 
 				'tag': tag, 
-				'payload': payload
-				})
+				'payload': payload})
 			response = requests.post(mimic_post_url, data=data)
 			if raw:
 				return response.text

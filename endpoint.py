@@ -15,8 +15,7 @@ class Endpoint:
 		endpoint = (
 			e['verb'], e['service'], 
 		    e['url'], e['tag'], 
-		    e['schema'], e['payload']
-		)
+		    e['schema'], e['payload'])
 		return db.insert_endpoint(endpoint)
 
 	def update_endpoint(self, post_data, db):
@@ -29,8 +28,7 @@ class Endpoint:
 		endpoint = (
 			e['verb'], e['service'], 
 		    e['url'], e['tag'], 
-		    e['schema'], e['payload'], int(e['id'])
-		)
+		    e['schema'], e['payload'], int(e['id']))
 		return db.update_endpoint(endpoint)
 
 	def delete_endpoint(self, id, db):

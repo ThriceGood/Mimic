@@ -1,4 +1,4 @@
-from utils import query_to_schema, payload_to_schema
+from utils import validate_query, validate_payload
 import json
 
 
@@ -9,16 +9,17 @@ class Mimic:
 		url = endpoint['url']
 		tag = endpoint['tag']
 		query = endpoint.get('query')
-		response = db.select_endpoint(query=(url, tag))
+		response = db.select_endpoint(where=(url, tag))
 		if type(response) is dict and response.get('error'):
 			return {'error': response['error']}
 		elif response:
 			schema = response['schema']
-			result = query_to_schema(query, schema)
+			result = validate_query(query, schema)
 			if result:
-				return response['payload']				
-			return {'error': 'bad query string'}
-		return {'error': 'no matching url or tag'}
+				return response['payload']			
+			error = 'query does not match schema: [{}] != [{}]'.format(query, schema)
+			return {'exceptions': error}
+		return {'error': 'no endpoint matching url or tag'}
 
 	def post(self, endpoint, db):
 		endpoint = json.loads(endpoint)
@@ -29,14 +30,14 @@ class Mimic:
 		    payload = json.loads(payload)
 		except Exception as e:
 			return {'error': 'invalid json in payload: {}'.format(e)}
-		response = db.select_endpoint(query=(url, tag))
+		response = db.select_endpoint(where=(url, tag))
 		if type(response) is dict and response.get('error'):
 			return {'error': response['error']}
 		elif response:
 			schema = json.loads(response['schema'])
-			# algorithm doesnt work if there are lists
-			result = payload_to_schema(payload, schema)
-			if result:				
-				return response['payload']				
-			return {'error': 'bad request schema'}
-		return {'error': 'no matching url or tag'}
+			result = validate_payload(payload, schema)
+			if result.get('exceptions'):
+				return result	
+			else:			
+				return response['payload']
+		return {'error': 'no endpoint matching url or tag'}
