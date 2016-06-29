@@ -21,8 +21,6 @@ class Mimic:
 		return {'error': 'no matching url or tag'}
 
 	def post(self, endpoint, db):
-		""" algorithm doesnt work if there are lists
-		"""
 		endpoint = json.loads(endpoint)
 		url = endpoint['url']
 		tag = endpoint['tag']
@@ -36,6 +34,7 @@ class Mimic:
 			return {'error': response['error']}
 		elif response:
 			schema = json.loads(response['schema'])
+			# algorithm doesnt work if there are lists
 			result = payload_to_schema(payload, schema)
 			if result:				
 				return response['payload']				

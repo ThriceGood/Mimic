@@ -33,3 +33,14 @@ def get_payload_shape(payload):
         return {key:get_payload_shape(payload[key]) for key in payload}
     else:
         return None
+
+"""
+SIMPLE RULES:
+
+validate schema against multiple schemas
+to get different responses
+
+get all keys and values in a dict on its own
+you could do simple value checks with it
+
+"""
