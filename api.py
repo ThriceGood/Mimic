@@ -6,6 +6,7 @@ from endpoint import Endpoint
 from ui import UI
 from database import Database
 import json
+import os
 
 mimic = Mimic()
 endpoint = Endpoint()
@@ -45,6 +46,7 @@ def mimic_post():
 @app.route('/ui/')
 def index():
 	db = get_db()
+	print os.path.dirname(os.path.realpath(__file__))
 	return ui.index_page(db)
 
 @app.route('/ui/docs')

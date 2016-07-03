@@ -1,10 +1,13 @@
+import os
 import sqlite3
 from sql_queries import *
 
 class Database:
 
 	def __init__(self):
-		self.database = sqlite3.connect('db/database')
+		root = os.path.dirname(os.path.realpath(__file__))
+		db_path = os.path.join(root, 'db', 'database')
+		self.database = sqlite3.connect(db_path)
 		self.database.row_factory = self.dict_factory
 		self.create_table()
 
