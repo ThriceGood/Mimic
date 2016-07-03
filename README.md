@@ -164,12 +164,11 @@
             from wrapper.mimic_wrapper import Mimic
 
             # POST
-            # generic mimic
-            mimic = Mimic()
+            mimic = Mimic('service1')
             url = '/service1/url'
             tag = 'my service1 call'
             payload = '{"key1": "value1", "key2": "value2"}'
-            response = mimic.post(service='service1', url=url, tag=tag, payload=payload)
+            response = mimic.post(url=url, tag=tag, payload=payload)
             print response
 
             # GET, query
@@ -180,12 +179,17 @@
             response = mimic.get(url=url, tag=tag, query=query)
             print response
 
-            # GET, no query
-            mimic = Mimic('service3')
+            # GET, generic mimic, no query
+            mimic = Mimic()
             url = '/service3/url'
             tag = 'my service3 call'
-            response = mimic.get(url=url, tag=tag)
+            response = mimic.get(service='service3', url=url, tag=tag)
             print response
+            url = '/service4/url'
+            tag = 'my service4 call'
+            response = mimic.get(service='service4', url=url, tag=tag)
+            print response
+            
          </pre>
     </blockquote>
     <br>
