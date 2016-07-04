@@ -1,4 +1,4 @@
-from utils import validate_query, validate_payload
+from validators import validate_query, validate_payload
 import json
 
 

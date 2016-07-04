@@ -1,4 +1,4 @@
-from utils import validate_post_data
+from validators import validate_post_data
 
 
 class Endpoint:
