@@ -35,13 +35,3 @@ def validate_payload(payload, schema):
 	return result
 
 
-
-# might be able to use this to get all keys and values
-# def payload_to_schema(payload, schema):
-# 	result = get_payload_shape(payload) == get_payload_shape(schema)
-# 	return result
-# def get_payload_shape(payload):
-#     if isinstance(payload, dict):
-#         return {key:get_payload_shape(payload[key]) for key in payload}
-#     else:
-#         return None
