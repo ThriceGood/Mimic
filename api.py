@@ -1,16 +1,16 @@
-""" a user based system with shared database would be cool...
-"""
 from flask import Flask, request
 from mimic import Mimic
 from endpoint import Endpoint
 from ui import UI
 from database import Database
+from logger import Logger
 import json
 import os
 
 mimic = Mimic()
 endpoint = Endpoint()
 ui = UI()
+log = Logger('API')
 app = Flask(__name__)
 
 def get_db():
@@ -57,6 +57,10 @@ def docs():
 def test():
 	return ui.test_page()
 
+@app.route('/ui/logs')
+def logs():
+	return ui.logs_page()
+
 @app.route('/insert_endpoint', methods=['POST'])
 @app.route('/ui/insert_endpoint', methods=['GET'])
 def insert_endpoint():
@@ -88,6 +92,12 @@ def delete_endpoint(id):
 
 """ app
 """
+
+@app.route('/logs')
+@app.route('/logs/<level>')
+def get_logs(level=None):
+	logs = log.get_logs(level)
+	return json.dumps({'logs': logs})
 
 def run():
 	app.run(debug=True)

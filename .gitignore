@@ -1,6 +1,7 @@
 *.pyc
-db/*
+db/
 *.egg-info/
 *.egg
-build/*
-dist/*
+build/
+dist/
+logs/

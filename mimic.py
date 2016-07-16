@@ -1,6 +1,8 @@
 from validators import validate_query, validate_payload
+from logger import Logger
 import json
 
+log = Logger('Mimic')
 
 class Mimic:
 
@@ -11,15 +13,20 @@ class Mimic:
 		query = endpoint.get('query')
 		response = db.select_endpoint(where=(url, tag))
 		if type(response) is dict and response.get('error'):
-			return {'error': response['error']}
+			error = response['error']
+			log.error(error)
+			return {'error': error}
 		elif response:
 			schema = response['schema']
 			result = validate_query(query, schema)
 			if result:
 				return response['payload']			
-			error = 'query does not match schema: [{}] != [{}]'.format(query, schema)
+			error = 'query does not match schema: {} != {}'.format(query, schema)
+			log.error(error)
 			return {'exceptions': error}
-		return {'error': 'no endpoint matching url or tag'}
+		message = 'no endpoint matching url or tag'
+		log.error(message)
+		return {'error': message}
 
 	def post(self, endpoint, db):
 		endpoint = json.loads(endpoint)
@@ -29,10 +36,13 @@ class Mimic:
 		try:
 		    payload = json.loads(payload)
 		except Exception as e:
+			log.error(str(e))
 			return {'error': 'invalid json in payload: {}'.format(e)}
 		response = db.select_endpoint(where=(url, tag))
 		if type(response) is dict and response.get('error'):
-			return {'error': response['error']}
+			error = response['error']
+			log.error(error)
+			return {'error': error}
 		elif response:
 			schema = json.loads(response['schema'])
 			result = validate_payload(payload, schema)
@@ -40,4 +50,10 @@ class Mimic:
 				return result	
 			else:			
 				return response['payload']
-		return {'error': 'no endpoint matching url or tag'}
+		message = 'no endpoint matching url or tag'
+		log.error(message)
+		return {'error': message}
+
+
+
+
