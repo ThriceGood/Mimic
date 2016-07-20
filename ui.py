@@ -9,11 +9,6 @@ class UI:
 		return render_template('docs.html')
 
 	def logs_page(self):
-		logs = []
-		# add checks
-		# with open('logs/log.log') as log:
-		# 	for line in log:
-		# 		logs.append(line)
 		logs = log.get_logs()
 		return render_template('logs.html', logs=logs)
 
