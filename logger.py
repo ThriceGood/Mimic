@@ -11,7 +11,7 @@ log_weights = {
 class Logger:
 
 	def __init__(self, name):
-		# add folder creation
+		self.create_log_dir()
 		self.logger = logging.getLogger('{}'.format(name))
 		format = "%(asctime)s - %(name)s [%(levelname)s]:  %(message)s"
 		logging.basicConfig(format=format, level=logging.DEBUG)
@@ -20,6 +20,12 @@ class Logger:
 		formatter = logging.Formatter(format)
 		file_handler.setFormatter(formatter)
 		self.logger.addHandler(file_handler)
+
+	def create_log_dir(self):
+		root = os.path.dirname(os.path.realpath(__file__))
+		logs_dir = os.path.join(root, 'logs')
+		if not os.path.isdir(logs_dir):
+			os.mkdir(logs_dir)
 
 	def info(self, message):
 		self.logger.info(message)
@@ -37,14 +43,11 @@ class Logger:
 		# add more specific exceptions, absolute url
 		logs = ''
 		weight = log_weights[level] if level else 4
-		try:
-			with open('logs/log.log') as log:
-				for line in log:
-					log_type = line[line.index('[') + 1:line.index(']')]
-					if log_weights[log_type.lower()] <= weight:
-						logs += line
-		except Exception as e:
-			return str(e)
+		with open('logs/log.log') as log:
+			for line in log:
+				log_type = line[line.index('[') + 1:line.index(']')]
+				if log_weights[log_type.lower()] <= weight:
+					logs += line
 		return logs
 
 

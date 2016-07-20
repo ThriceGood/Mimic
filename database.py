@@ -5,11 +5,17 @@ from sql_queries import *
 class Database:
 
 	def __init__(self):
-		root = os.path.dirname(os.path.realpath(__file__))
-		db_path = os.path.join(root, 'db', 'database')
+		self.create_db_dir()
+		db_path = os.path.join(self.db_dir, 'database')		
 		self.database = sqlite3.connect(db_path)
 		self.database.row_factory = self.dict_factory
 		self.create_table()
+
+	def create_db_dir(self):
+		root = os.path.dirname(os.path.realpath(__file__))
+		self.db_dir = os.path.join(root, 'db')
+		if not os.path.isdir(self.db_dir):
+			os.mkdir(self.db_dir)
 
 	def get_cursor(self):
 		return self.database.cursor()
