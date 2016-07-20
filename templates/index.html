@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Mimic Index</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/bootstrap.min.css">
-  <script src="/static/jquery.min.js"></script>
-  <script src="/static/bootstrap.min.js"></script>
-</head>
-<body>
+
+<title>Mimic Index</title>
+
+{% from 'macros.html' import render_nav_links %}
+
+{% extends "base.html" %}
+{% block content %}
 
 <div class="container">
 <h3>Mimics</h3>
 
-<a href="/ui/docs" style="float: right;padding: 10px;">Docs</a>
-<a href="/ui/test" style="float: right;padding: 10px;">Test</a>
-<a href="/ui/insert_endpoint" style="float: right;padding: 10px;">Insert</a>
-<!-- <hr> -->
+{{ render_nav_links() }}
+
 <br>
 <table class="table">
 <tr>
@@ -86,9 +80,6 @@
 </div>
 
 
-
-</body>
-
 <script type="text/javascript">
 	
 function load_schema(schema) {
@@ -120,4 +111,4 @@ function del(id) {
 
 </script>
 
-</html>
+{% endblock %}

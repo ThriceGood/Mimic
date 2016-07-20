@@ -1,9 +1,7 @@
 <div class="container">
  
          <h3>Mimic Docs</h3>
-         <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a> -
-         <a href="http://localhost:5000/ui/insert" style="float: right;padding: 10px;">local insert</a> -
-         <a href="http://localhost:5000/ui/test" style="float: right;padding: 10px;">local test</a>
+         <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
     <hr>
     <br>
     <br>

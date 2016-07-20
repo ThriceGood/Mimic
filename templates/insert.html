@@ -1,27 +1,17 @@
-<!DOCTYPE html>
- <html lang="en">
- 
- <head>
-     <meta charset="utf-8">
-     <meta charset="utf-8">
-  	 <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-     <title>Mimic Insert</title>
 
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
-  <script src="/static/jquery.min.js"></script>
-  <script src="/static/bootstrap.min.js"></script>
- 
- </head>
- 
- <body>
+  <title>Mimic Insert</title>
+
+ {% from 'macros.html' import render_nav_links %}
+
+ {% extends 'base.html' %}
+ {% block content %}
 
      <div class="container">
 
  
          <form class="" action="/signUp" method="post" role="form">            
             <h3>Insert endpoint </h3>
-             <a href="/ui/" style="float: right;padding: 20px;">Index</a>
+             {{ render_nav_links() }}
              <hr>
             <br>
              <input id='verb' name="verb"  placeholder="verb">
@@ -36,7 +26,6 @@
       
      </div>
    
- </body>
 
  <script type="text/javascript">
  	
@@ -89,4 +78,4 @@
 
  </script>
  
- </html>
+ {% endblock %}

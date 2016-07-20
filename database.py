@@ -21,10 +21,10 @@ class Database:
 		return self.database.cursor()
 
 	def dict_factory(self, cursor, row):
-	    d = {}
-	    for i, col in enumerate(cursor.description):
-	        d[col[0]] = row[i]
-	    return d
+	    results_dict = {}
+	    for index, column in enumerate(cursor.description):
+	        results_dict[column[0]] = row[index]
+	    return results_dict
 
 	def create_table(self):
 		db = self.get_cursor()

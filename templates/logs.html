@@ -1,6 +1,20 @@
 
+<title>Mimic Logs</title>
+
+{% from 'macros.html' import render_nav_links %}
+
+{% extends 'base.html' %}
+{% block content %}
+
+{{ render_nav_links() }}
+
+<br>
+<div class="container">
 <pre>
 {% for log in logs %}
 	{{ log }}
 {% endfor %}
 </pre>
+</div>
+
+{% endblock %}
