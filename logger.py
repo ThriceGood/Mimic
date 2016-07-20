@@ -15,7 +15,8 @@ class Logger:
 		self.logger = logging.getLogger('{}'.format(name))
 		format = "%(asctime)s - %(name)s [%(levelname)s]:  %(message)s"
 		logging.basicConfig(format=format, level=logging.DEBUG)
-		file_handler = logging.FileHandler('logs/log.log')
+		self.log_file_path = os.path.join(self.logs_dir, 'logs.log')
+		file_handler = logging.FileHandler(self.log_file_path)
 		file_handler.setLevel(logging.DEBUG)
 		formatter = logging.Formatter(format)
 		file_handler.setFormatter(formatter)
@@ -23,9 +24,9 @@ class Logger:
 
 	def create_log_dir(self):
 		root = os.path.dirname(os.path.realpath(__file__))
-		logs_dir = os.path.join(root, 'logs')
-		if not os.path.isdir(logs_dir):
-			os.mkdir(logs_dir)
+		self.logs_dir = os.path.join(root, 'logs')
+		if not os.path.isdir(self.logs_dir):
+			os.mkdir(self.logs_dir)
 
 	def info(self, message):
 		self.logger.info(message)
@@ -39,11 +40,10 @@ class Logger:
 	def error(self, message):
 		self.logger.error(message)
 
-	def get_logs(self, level):
-		# add more specific exceptions, absolute url
+	def get_logs(self, level=None):
 		logs = ''
 		weight = log_weights[level] if level else 4
-		with open('logs/log.log') as log:
+		with open(self.log_file_path) as log:
 			for line in log:
 				log_type = line[line.index('[') + 1:line.index(']')]
 				if log_weights[log_type.lower()] <= weight:

@@ -6,15 +6,41 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{{ render_nav_links() }}
-
-<br>
 <div class="container">
-<pre>
-{% for log in logs %}
-	{{ log }}
-{% endfor %}
+<h3>Mimic Logs</h3>
+<br>
+{{ render_nav_links() }}
+<button onclick="get_logs('all')" class="btn btn-sm btn-info">Debug</button>
+<button onclick="get_logs('info')" class="btn btn-sm btn-success">Info</button>
+<button onclick="get_logs('warning')" class="btn btn-sm btn-warning">Warning</button>
+<button onclick="get_logs('error')" class="btn btn-sm btn-danger">Error</button>
+<br>
+<br>
+<pre id="logs_output">
+{{ logs }}
 </pre>
 </div>
+
+<script type="text/javascript">
+	
+function get_logs(level) {
+
+	if (level == 'all') {
+		url = '/logs'
+	}
+	else {
+		url = '/logs/' + level
+	}
+
+	$.get(url, function(data) {
+	  	console.log(data)
+	  	d = JSON.parse(data)
+  		$("#logs_output").html(function() {
+      		return d['logs']
+		});	
+	});
+}
+
+</script>
 
 {% endblock %}

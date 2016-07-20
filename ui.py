@@ -1,5 +1,7 @@
 from flask import render_template
+from logger import Logger
 
+log = Logger('UI')
 
 class UI:
 
@@ -9,9 +11,10 @@ class UI:
 	def logs_page(self):
 		logs = []
 		# add checks
-		with open('logs/log.log') as log:
-			for line in log:
-				logs.append(line)
+		# with open('logs/log.log') as log:
+		# 	for line in log:
+		# 		logs.append(line)
+		logs = log.get_logs()
 		return render_template('logs.html', logs=logs)
 
 	def test_page(self):
