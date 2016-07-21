@@ -19,7 +19,7 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'mimic=api:run',
+            'mimic=mimic.api:run',
         ],
     },
     url="https://github.com/ThriceGood/Mimic",
@@ -32,5 +32,5 @@ setup(
             )),
     zip_safe=False,
     include_package_data=True,
-    packages=find_packages(),
+    packages=find_packages()
     )
