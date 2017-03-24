@@ -159,34 +159,34 @@
 <p>A wrapper is included to allow you to easily replace service wrapper calls with Mimic calls. A Mimic specific to a service can be instanciated with the service name as an argument. Alternatively a generic Mimic can be instanciated with no service name, although a service name will have to be passed to each call.</p>
 <h5><b>Usage examples:</b></h5>
 <pre>
-   from wrapper.mimic_wrapper import Mimic
+from wrapper.mimic_wrapper import Mimic
 
-   """ POST """
-   mimic = Mimic('service1')
-   url = '/service1/url'
-   tag = 'my service1 call'
-   payload = '{"key1": "value1", "key2": "value2"}'
-   response = mimic.post(url=url, tag=tag, payload=payload)
-   print response
+""" POST """
+mimic = Mimic('service1')
+url = '/service1/url'
+tag = 'my service1 call'
+payload = '{"key1": "value1", "key2": "value2"}'
+response = mimic.post(url=url, tag=tag, payload=payload)
+print response
 
-   """ GET, query """
-   mimic = Mimic('service2')
-   url = '/service2/url'
-   tag = 'my service2 call'
-   query = '?name=alarm'
-   response = mimic.get(url=url, tag=tag, query=query)
-   print response
+""" GET, query """
+mimic = Mimic('service2')
+url = '/service2/url'
+tag = 'my service2 call'
+query = '?name=alarm'
+response = mimic.get(url=url, tag=tag, query=query)
+print response
 
-   """ GET, generic mimic, no query """
-   mimic = Mimic()
-   url = '/service3/url'
-   tag = 'my service3 call'
-   response = mimic.get(service='service3', url=url, tag=tag)
-   print response
-   url = '/service4/url'
-   tag = 'my service4 call'
-   response = mimic.get(service='service4', url=url, tag=tag)
-   print response
+""" GET, generic mimic, no query """
+mimic = Mimic()
+url = '/service3/url'
+tag = 'my service3 call'
+response = mimic.get(service='service3', url=url, tag=tag)
+print response
+url = '/service4/url'
+tag = 'my service4 call'
+response = mimic.get(service='service4', url=url, tag=tag)
+print response
 </pre>
 </blockquote>
 <hr>
