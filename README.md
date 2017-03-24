@@ -187,7 +187,7 @@
    tag = 'my service4 call'
    response = mimic.get(service='service4', url=url, tag=tag)
    print response
-</re>
+</pre>
 </blockquote>
 <hr>
 <br>
