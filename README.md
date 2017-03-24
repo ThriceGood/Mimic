@@ -1,4 +1,3 @@
-<div class="container">
  
          ### Mimic Docs
          <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
@@ -206,4 +205,3 @@
 
 
       
-     </div>
