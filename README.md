@@ -1,20 +1,26 @@
+<div class="container">
  
-         ### Mimic Docs
+         <h3>Mimic Docs</h3>
          <a href="http://localhost:5000/ui/" style="float: right;padding: 10px;">local index</a>
-    ---
+    <hr>
+    <br>
+    <br>
 
-
-         > #### Mimic is a REST service mocker
-         > Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. A user makes a request to the mimic specifying the desired mock endpoint. Sent with this request is a payload containing the actual JSON that would be sent to the real service or API. The mimic compares the requests payload schema to the schema of the related mock endpoint, if it is a match, the desired response data is returned. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.
-
-        > #### Installation
-        > Get the repo.
-        > Recommended: set up a virtual environment
-        > run: `$python setup.py install`
-        > start Mimic with: `$ mimic`
-        > Mimic is now running on: localhost:5000
-        > You can get to the UI index with: localhost:5000/ui
-
+    <blockquote>
+         <p><b>Mimic is a REST service mocker</b></p>
+         <p>Mimic is a microservice designed to mock other microservices and REST APIs. It provides an interface to define mock endpoints, their desired request schema and their responses. A user makes a request to the mimic specifying the desired mock endpoint. Sent with this request is a payload containing the actual JSON that would be sent to the real service or API. The mimic compares the requests payload schema to the schema of the related mock endpoint, if it is a match, the desired response data is returned. All mimic endpoints can be interacted with via REST calls or by using the mimic wrapper. There is three aspects to Mimic, the mimic endpoints, the data endpoints and the user interface.</p>
+    </blockquote>
+    <br>
+    <blockquote>
+         <p><b>Installation</b></p>
+        <p>Get the repo.</p>
+        <p>Recommended: set up a virtual environment</p>
+        <p>run: <code>$ python setup.py install</code></p>
+        <p>start Mimic with: <code>$ mimic</code></p>
+        <p>Mimic is now running on: localhost:5000</p>
+        <p>You can get to the UI index with: localhost:5000/ui</p>
+    </blockquote>
+    <br>
     <blockquote>
 
          <p><b>Mimic endpoints</b></p>
@@ -205,3 +211,4 @@
 
 
       
+     </div>
