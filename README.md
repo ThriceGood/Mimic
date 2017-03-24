@@ -158,7 +158,7 @@
 <p><b>The Mimic wrapper</b></p>
 <p>A wrapper is included to allow you to easily replace service wrapper calls with Mimic calls. A Mimic specific to a service can be instanciated with the service name as an argument. Alternatively a generic Mimic can be instanciated with no service name, although a service name will have to be passed to each call.</p>
 <h5><b>Usage examples:</b></h5>
-<pre>
+```python
    from wrapper.mimic_wrapper import Mimic
 
    # POST
@@ -187,8 +187,7 @@
    tag = 'my service4 call'
    response = mimic.get(service='service4', url=url, tag=tag)
    print response
-   
-</pre>
+```
 </blockquote>
 <hr>
 <br>
