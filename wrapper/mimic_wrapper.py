@@ -4,9 +4,6 @@ import json
 mimic_get_url = 'http://127.0.0.1:5000/mimic/get'
 mimic_post_url = 'http://127.0.0.1:5000/mimic/post'
 
-""" maybe check for the existance of errors and raise exception if 
-	found should probably fail when an error is detected right?
-""" 
 
 class Mimic:
 
