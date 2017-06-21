@@ -64,5 +64,3 @@ class Mimic:
 				'service has not been set, generic service ' \
 				'call requires service name as argument')
 
-	def delete(self):
-		pass
