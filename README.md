@@ -189,24 +189,6 @@ response = mimic.get(service='service4', url=url, tag=tag)
 print response
 </pre>
 </blockquote>
-<hr>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<blockquote>
-<p>An optimistic mind-set finds dozens of possible solutions for every problem that the pessimist regards as incurable.</p>
-<small><cite>Robert Anton Wilson</cite></small>
-</blockquote>
 
 
   
